@@ -1,17 +1,22 @@
 <?php
 /**
  * Twenty Twelve functions and definitions.
+ * Twenty Twelve 関数と定義。
  *
  * Sets up the theme and provides some helper functions, which are used
  * in the theme as custom template tags. Others are attached to action and
  * filter hooks in WordPress to change core functionality.
- *
+ * テーマをセットアップし、テーマ内でカスタムなテンプレートタグとして利用される
+ * いくつかのヘルパー関数を提供します。その他、WordPress 内のアクションと
+ * フィルターフックにアタッチされ、主要な機能を変更します。
+ * 
  * When using a child theme (see http://codex.wordpress.org/Theme_Development and
  * http://codex.wordpress.org/Child_Themes), you can override certain functions
  * (those wrapped in a function_exists() call) by defining them first in your child theme's
  * functions.php file. The child theme's functions.php file is included before the parent
  * theme's file, so the child theme functions would be used.
- *
+ * 子テーマ
+ * 
  * Functions that are not pluggable (not wrapped in function_exists()) are instead attached
  * to a filter or action hook.
  *
