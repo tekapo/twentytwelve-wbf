@@ -15,13 +15,20 @@
  * (those wrapped in a function_exists() call) by defining them first in your child theme's
  * functions.php file. The child theme's functions.php file is included before the parent
  * theme's file, so the child theme functions would be used.
- * 子テーマ
+ * 子テーマを作成する場合 (http://wpdocs.sourceforge.jp/テーマの作成 や 
+ * http://wpdocs.sourceforge.jp/Child_Themes を参照)、 特定の関数 (function_exists() 呼び出しで
+ * ラップされています) は子テーマの functions.php ファイルで先に定義することによって
+ * オーバーライドできます。子テーマの functions.php ファイルは親テーマのファイルよりも
+ * 先にインクルードされるため、子テーマの関数が使用されます。
  * 
  * Functions that are not pluggable (not wrapped in function_exists()) are instead attached
  * to a filter or action hook.
+ * オーバーライドできない関数 (function_exists()でラップされていないもの) はフィルターや
+ * アクションフックにアタッチされています。
  *
  * For more information on hooks, actions, and filters, see http://codex.wordpress.org/Plugin_API.
- *
+ * フック、アクション、フィルターに関する詳細は http://wpdocs.sourceforge.jp/プラグイン_API を参照してください。
+ * 
  * @package WordPress
  * @subpackage Twenty_Twelve
  * @since Twenty Twelve 1.0
@@ -29,6 +36,13 @@
 
 /**
  * Sets up the content width value based on the theme's design and stylesheet.
+ * テーマのデザインとスタイルシートをベースにしたコンテンツ幅のセットアップ。
+ * 
+ * ***
+ * 投稿や固定ページなどに挿入するメディア (画像やビデオ) の幅、oEmbed の幅を設定
+ * http://wpdocs.sourceforge.jp/Embeds
+ * 
+ * TODO:ちょっと優先順位が不明なので要調査
  */
 if ( ! isset( $content_width ) )
 	$content_width = 625;
@@ -36,6 +50,8 @@ if ( ! isset( $content_width ) )
 /**
  * Sets up theme defaults and registers the various WordPress features that
  * Twenty Twelve supports.
+ * テーマのデフォルト値をセットアップし、Twenty Twelve でサポートする WordPress 
+ * の様々な機能を登録。
  *
  * @uses load_theme_textdomain() For translation/localization support.
  * @uses add_editor_style() To add a Visual Editor stylesheet.
@@ -44,22 +60,37 @@ if ( ! isset( $content_width ) )
  * @uses register_nav_menu() To add support for navigation menus.
  * @uses set_post_thumbnail_size() To set a custom post thumbnail size.
  *
+ * @uses load_theme_textdomain() 翻訳/ローカライゼーションのサポート
+ * @uses add_editor_style() ビジュアルエディターのスタイルシートを追加
+ * @uses add_theme_support() 投稿サムネイル (アイキャッチ画像)、自動フィードリンク、
+ * カスタム背景、投稿フォーマットのサポートを追加
+ * @uses register_nav_menu() ナビゲーションメニューのサポートを追加
+ * @uses set_post_thumbnail_size() カスタム投稿サムネイルのサイズを設定
+ * *
  * @since Twenty Twelve 1.0
  */
 function twentytwelve_setup() {
 	/*
 	 * Makes Twenty Twelve available for translation.
+	 * Twenty Twelve で言語リソース (翻訳ファイル) を利用できるようにする。
 	 *
 	 * Translations can be added to the /languages/ directory.
 	 * If you're building a theme based on Twenty Twelve, use a find and replace
 	 * to change 'twentytwelve' to the name of your theme in all the template files.
+	 * 言語リソース (翻訳ファイル) は /languages/ ディレクトリに追加できます。
+	 * Twenty Twelve をベースにテーマを作成する場合、エディターの置換機能を利用して
+	 * すべてのテンプレートファイル内の 'twentytwelve' を自分のテーマ名に変更します。
+	 * 
+	 * TODO: 言語リソースの説明
 	 */
 	load_theme_textdomain( 'twentytwelve', get_template_directory() . '/languages' );
 
 	// This theme styles the visual editor with editor-style.css to match the theme style.
+	// テーマのスタイルと合わせるため editor-style.css でビジュアルエディターのスタイルをつける。
 	add_editor_style();
 
 	// Adds RSS feed links to <head> for posts and comments.
+	// 投稿とコメント用の RSS フィードリンクを <head> に追加する。
 	add_theme_support( 'automatic-feed-links' );
 
 	// This theme supports a variety of post formats.
