@@ -94,9 +94,15 @@ function twentytwelve_setup() {
 	add_theme_support( 'automatic-feed-links' );
 
 	// This theme supports a variety of post formats.
+	// 様々な投稿フォーマットをサポート。
+	// 
+	// TODO: 投稿フォーマットの説明
 	add_theme_support( 'post-formats', array( 'aside', 'image', 'link', 'quote', 'status' ) );
 
 	// This theme uses wp_nav_menu() in one location.
+	// このテーマでは wp_nav_menu() を一つの場所で利用する。
+	// 
+	// TODO: wp_nav_menu()の説明
 	register_nav_menu( 'primary', __( 'Primary Menu', 'twentytwelve' ) );
 
 	/*
