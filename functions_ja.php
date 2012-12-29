@@ -144,21 +144,25 @@ function twentytwelve_scripts_styles() {
 	/*
 	 * Adds JavaScript to pages with the comment form to support
 	 * sites with threaded comments (when in use).
-	 * スレッドコメント (有効時) のあるJavaScriptを
+	 * スレッドコメント (有効時) を使うサイトをサポートするために
+	 * コメントフォームのあるページに JavaScript をする。
 	 */
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) )
 		wp_enqueue_script( 'comment-reply' );
 
 	/*
 	 * Adds JavaScript for handling the navigation menu hide-and-show behavior.
+	 * 小さなスクリーン用にナビゲーションメニューの表示/非表示を扱うための JavaScript を追加する。
 	 */
 	wp_enqueue_script( 'twentytwelve-navigation', get_template_directory_uri() . '/js/navigation.js', array(), '1.0', true );
 
 	/*
 	 * Loads our special font CSS file.
+	 * 特別なフォント CSS ファイルを読み込む。
 	 *
 	 * The use of Open Sans by default is localized. For languages that use
 	 * characters not supported by the font, the font can be disabled.
+	 * 
 	 *
 	 * To disable in a child theme, use wp_dequeue_style()
 	 * function mytheme_dequeue_fonts() {
