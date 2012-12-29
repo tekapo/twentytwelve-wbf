@@ -108,24 +108,33 @@ function twentytwelve_setup() {
 	/*
 	 * This theme supports custom background color and image, and here
 	 * we also set up the default background color.
+	 * このテーマではカスタム背景色と背景画像をサポートしていて、ここでは
+	 * デフォルトの背景色を設定している。
 	 */
 	add_theme_support( 'custom-background', array(
 		'default-color' => 'e6e6e6',
 	) );
 
 	// This theme uses a custom image size for featured images, displayed on "standard" posts.
+	// このテーマでは、"標準"の投稿に表示させるアイキャッチ画像用にカスタムな画像サイズを使用している。
 	add_theme_support( 'post-thumbnails' );
-	set_post_thumbnail_size( 624, 9999 ); // Unlimited height, soft crop
+	set_post_thumbnail_size( 624, 9999 ); // Unlimited height, soft crop 高さの制限をなくして、ソフトクロップ TODO ソフトクロップ？
 }
 add_action( 'after_setup_theme', 'twentytwelve_setup' );
 
 /**
  * Adds support for a custom header image.
+ * カスタムなヘッダー画像のサポートを追加。
+ * 
+ * TODO:custom-header.phpも解説するかぁ？
  */
 require( get_template_directory() . '/inc/custom-header.php' );
 
 /**
  * Enqueues scripts and styles for front-end.
+ * フロントエンド用のスクリプトとスタイルをキューに加える。
+ * 
+ * TODO: http://codex.wordpress.org/Function_Reference/wp_enqueue_script を訳す
  *
  * @since Twenty Twelve 1.0
  */
@@ -135,6 +144,7 @@ function twentytwelve_scripts_styles() {
 	/*
 	 * Adds JavaScript to pages with the comment form to support
 	 * sites with threaded comments (when in use).
+	 * スレッドコメント (有効時) のあるJavaScriptを
 	 */
 	if ( is_singular() && comments_open() && get_option( 'thread_comments' ) )
 		wp_enqueue_script( 'comment-reply' );
