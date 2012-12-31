@@ -162,7 +162,8 @@ function twentytwelve_scripts_styles() {
 	 *
 	 * The use of Open Sans by default is localized. For languages that use
 	 * characters not supported by the font, the font can be disabled.
-	 * 
+	 * Open sans はデフォルトではローカライズされている。このフォントで
+	 * サポートされていない文字を使用する言語ではこのフォントを無効化できる。
 	 *
 	 * To disable in a child theme, use wp_dequeue_style()
 	 * function mytheme_dequeue_fonts() {
