@@ -337,9 +337,10 @@ if ( ! function_exists( 'twentytwelve_comment' ) ) :
  * To override this walker in a child theme without modifying the comments template
  * simply create your own twentytwelve_comment(), and that function will be used instead.
  * コメントテンプレートを変更せずに子テーマでこのウォーカーを上書きするには
- * たんに独自の twentytwelve_comment() を作成するだけでその関数が代わりに使用されます。
+ * たんに独自の twentytwelve_comment() を作成するだけでその関数が代わりに使用される。
  *
  * Used as a callback by wp_list_comments() for displaying the comments.
+ * コメント表示用の wp_list_comments() によるコールバックとして利用される。
  *
  * @since Twenty Twelve 1.0
  */
