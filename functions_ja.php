@@ -350,6 +350,7 @@ function twentytwelve_comment( $comment, $args, $depth ) {
 		case 'pingback' :
 		case 'trackback' :
 		// Display trackbacks differently than normal comments.
+		// トラックバックは通常のコメントとは違う形で表示する。
 	?>
 	<li <?php comment_class(); ?> id="comment-<?php comment_ID(); ?>">
 		<p><?php _e( 'Pingback:', 'twentytwelve' ); ?> <?php comment_author_link(); ?> <?php edit_comment_link( __( '(Edit)', 'twentytwelve' ), '<span class="edit-link">', '</span>' ); ?></p>
@@ -357,6 +358,7 @@ function twentytwelve_comment( $comment, $args, $depth ) {
 			break;
 		default :
 		// Proceed with normal comments.
+		// 通常のコメントを続行する。
 		global $post;
 	?>
 	<li <?php comment_class(); ?> id="li-comment-<?php comment_ID(); ?>">
@@ -367,12 +369,14 @@ function twentytwelve_comment( $comment, $args, $depth ) {
 					printf( '<cite class="fn">%1$s %2$s</cite>',
 						get_comment_author_link(),
 						// If current post author is also comment author, make it known visually.
+						// 当該記事の作成者がコメントの投稿者の場合に、それを見た目で分かるようにする。
 						( $comment->user_id === $post->post_author ) ? '<span> ' . __( 'Post author', 'twentytwelve' ) . '</span>' : ''
 					);
 					printf( '<a href="%1$s"><time datetime="%2$s">%3$s</time></a>',
 						esc_url( get_comment_link( $comment->comment_ID ) ),
 						get_comment_time( 'c' ),
 						/* translators: 1: date, 2: time */
+						/* 翻訳者の方へ: 1: 日にち, 2: 時刻 */
 						sprintf( __( '%1$s at %2$s', 'twentytwelve' ), get_comment_date(), get_comment_time() )
 					);
 				?>
@@ -393,13 +397,14 @@ function twentytwelve_comment( $comment, $args, $depth ) {
 		</article><!-- #comment-## -->
 	<?php
 		break;
-	endswitch; // end comment_type check
+	endswitch; // end comment_type check コメントタイプチェック終わり 
 }
 endif;
 
 if ( ! function_exists( 'twentytwelve_entry_meta' ) ) :
 /**
  * Prints HTML with meta information for current post: categories, tags, permalink, author, and date.
+ * 
  *
  * Create your own twentytwelve_entry_meta() to override in a child theme.
  *
