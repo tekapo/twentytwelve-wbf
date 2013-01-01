@@ -166,6 +166,7 @@ function twentytwelve_scripts_styles() {
 	 * サポートされていない文字を使用する言語ではこのフォントを無効化できる。
 	 *
 	 * To disable in a child theme, use wp_dequeue_style()
+	 * 子テーマで無効化するには use wp_dequeue_style() を使用する
 	 * function mytheme_dequeue_fonts() {
 	 *     wp_dequeue_style( 'twentytwelve-fonts' );
 	 * }
@@ -174,11 +175,17 @@ function twentytwelve_scripts_styles() {
 
 	/* translators: If there are characters in your language that are not supported
 	   by Open Sans, translate this to 'off'. Do not translate into your own language. */
+	/* 翻訳者の方へ: みなさんの言語で Open Sans でサポートされていない文字がある場合、
+	 * これを 'off' にしてください。翻訳はしないでください。
+	 * TODO: _X()の解説
+	 */
 	if ( 'off' !== _x( 'on', 'Open Sans font: on or off', 'twentytwelve' ) ) {
 		$subsets = 'latin,latin-ext';
 
 		/* translators: To add an additional Open Sans character subset specific to your language, translate
 		   this to 'greek', 'cyrillic' or 'vietnamese'. Do not translate into your own language. */
+		/* 翻訳者の方へ: ご自分の言語用の Open Sans 文字サブセットを追加するには、ここを
+		  'greek', 'cyrillic' もしくは 'vietnamese' にしてください。ご自分の言語へは訳さないでください */
 		$subset = _x( 'no-subset', 'Open Sans font: add new subset (greek, cyrillic, vietnamese)', 'twentytwelve' );
 
 		if ( 'cyrillic' == $subset )
@@ -198,11 +205,13 @@ function twentytwelve_scripts_styles() {
 
 	/*
 	 * Loads our main stylesheet.
+	 * メインスタイルシートの読み込み。
 	 */
 	wp_enqueue_style( 'twentytwelve-style', get_stylesheet_uri() );
 
 	/*
 	 * Loads the Internet Explorer specific stylesheet.
+	 * Internet Explorer 用スタイルシートの読み込み。
 	 */
 	wp_enqueue_style( 'twentytwelve-ie', get_template_directory_uri() . '/css/ie.css', array( 'twentytwelve-style' ), '20121010' );
 	$wp_styles->add_data( 'twentytwelve-ie', 'conditional', 'lt IE 9' );
@@ -212,6 +221,8 @@ add_action( 'wp_enqueue_scripts', 'twentytwelve_scripts_styles' );
 /**
  * Creates a nicely formatted and more specific title element text
  * for output in head of document, based on current view.
+ * 閲覧してるページをもとにして head の出力用にかっこ良くフォーマットされた
+ * より具体的なタイトル要素テキストを生成する。
  *
  * @since Twenty Twelve 1.0
  *
@@ -226,14 +237,17 @@ function twentytwelve_wp_title( $title, $sep ) {
 		return $title;
 
 	// Add the site name.
+	// サイト名を追加する。
 	$title .= get_bloginfo( 'name' );
 
 	// Add the site description for the home/front page.
+	// ホーム/トップページ用にサイトディスクリプションを追加する。
 	$site_description = get_bloginfo( 'description', 'display' );
 	if ( $site_description && ( is_home() || is_front_page() ) )
 		$title = "$title $sep $site_description";
 
 	// Add a page number if necessary.
+	// 必要に応じてページ番号を追加する。
 	if ( $paged >= 2 || $page >= 2 )
 		$title = "$title $sep " . sprintf( __( 'Page %s', 'twentytwelve' ), max( $paged, $page ) );
 
@@ -243,6 +257,7 @@ add_filter( 'wp_title', 'twentytwelve_wp_title', 10, 2 );
 
 /**
  * Makes our wp_nav_menu() fallback -- wp_page_menu() -- show a home link.
+ * wp_nav_menu() のフォールバック -- wp_page_menu() -- にホームへのリンクを表示させる。
  *
  * @since Twenty Twelve 1.0
  */
@@ -255,6 +270,7 @@ add_filter( 'wp_page_menu_args', 'twentytwelve_page_menu_args' );
 
 /**
  * Registers our main widget area and the front page widget areas.
+ * メインウィジェットエリアとトップページ用ウィジェットエリアを登録する。
  *
  * @since Twenty Twelve 1.0
  */
@@ -294,6 +310,7 @@ add_action( 'widgets_init', 'twentytwelve_widgets_init' );
 if ( ! function_exists( 'twentytwelve_content_nav' ) ) :
 /**
  * Displays navigation to next/previous pages when applicable.
+ * 前後のページがあればそのページへのナビゲーションを表示する。
  *
  * @since Twenty Twelve 1.0
  */
@@ -315,6 +332,7 @@ endif;
 if ( ! function_exists( 'twentytwelve_comment' ) ) :
 /**
  * Template for comments and pingbacks.
+ * コメントとピンバックのテンプレート。
  *
  * To override this walker in a child theme without modifying the comments template
  * simply create your own twentytwelve_comment(), and that function will be used instead.
