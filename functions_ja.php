@@ -404,17 +404,20 @@ endif;
 if ( ! function_exists( 'twentytwelve_entry_meta' ) ) :
 /**
  * Prints HTML with meta information for current post: categories, tags, permalink, author, and date.
- * 
+ * 表示中の投稿のメタ情報を HTML で出力する: カテゴリー、タグ、パーマリンク、作成者、日付。
  *
  * Create your own twentytwelve_entry_meta() to override in a child theme.
+ * 子テーマで上書きするには独自の twentytwelve_entry_meta() を作成する。
  *
  * @since Twenty Twelve 1.0
  */
 function twentytwelve_entry_meta() {
-	// Translators: used between list items, there is a space after the comma.
+	// Translators: used between list items, there is a space after the comma. 
+	// 翻訳者の方へ: リスト項目間に使われ、コンマの後ろにスペースがあります。
 	$categories_list = get_the_category_list( __( ', ', 'twentytwelve' ) );
 
-	// Translators: used between list items, there is a space after the comma.
+	// Translators: used between list items, there is a space after the comma. 
+	// 翻訳者の方へ: リスト項目間に使われ、コンマの後ろにスペースがあります。
 	$tag_list = get_the_tag_list( '', __( ', ', 'twentytwelve' ) );
 
 	$date = sprintf( '<a href="%1$s" title="%2$s" rel="bookmark"><time class="entry-date" datetime="%3$s">%4$s</time></a>',
@@ -431,6 +434,7 @@ function twentytwelve_entry_meta() {
 	);
 
 	// Translators: 1 is category, 2 is tag, 3 is the date and 4 is the author's name.
+	//翻訳者の方へ: 1 はカテゴリー、2 はタグ、3 は日付、4 は投稿作成者名。
 	if ( $tag_list ) {
 		$utility_text = __( 'This entry was posted in %1$s and tagged %2$s on %3$s<span class="by-author"> by %4$s</span>.', 'twentytwelve' );
 	} elseif ( $categories_list ) {
@@ -458,6 +462,12 @@ endif;
  * 3. White or empty background color to change the layout and spacing.
  * 4. Custom fonts enabled.
  * 5. Single or multiple authors.
+ * 以下を表示するため、WordPress のデフォルトのボディクラスを拡張する:
+ * 1. サイドバーにアクティブなウィジェットがない場合や全幅のテンプレートの
+ *    ときに全幅のレイアウト使用時
+ * 2. フロントページテンプレート: サムネイル使用時とウィジェットエリアでの
+ *    サイドバーの数
+ * 3. 
  *
  * @since Twenty Twelve 1.0
  *
