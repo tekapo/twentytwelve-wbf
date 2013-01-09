@@ -463,11 +463,13 @@ endif;
  * 4. Custom fonts enabled.
  * 5. Single or multiple authors.
  * 以下を表示するため、WordPress のデフォルトのボディクラスを拡張する:
- * 1. サイドバーにアクティブなウィジェットがない場合や全幅のテンプレートの
- *    ときに全幅のレイアウト使用時
+ * 1. サイドバーにアクティブなウィジェットがない場合や全幅テンプレートの
+ *    ときに全幅のレイアウトを使用
  * 2. フロントページテンプレート: サムネイル使用時とウィジェットエリアでの
  *    サイドバーの数
- * 3. 
+ * 3. 背景色が白もしくは空(から)の時にレイアウトとスペーシングを変更するため
+ * 4. カスタムフォント有効時
+ * 5. 投稿者が単独か複数か
  *
  * @since Twenty Twelve 1.0
  *
@@ -493,7 +495,8 @@ function twentytwelve_body_class( $classes ) {
 	elseif ( in_array( $background_color, array( 'fff', 'ffffff' ) ) )
 		$classes[] = 'custom-background-white';
 
-	// Enable custom font class only if the font CSS is queued to load.
+	// Enable custom font class only if the font CSS is queued to load. 
+	// font CSS が読み込みのキューにあるときだけカスタムフォントのクラスを有効にする
 	if ( wp_style_is( 'twentytwelve-fonts', 'queue' ) )
 		$classes[] = 'custom-font-enabled';
 
@@ -507,6 +510,8 @@ add_filter( 'body_class', 'twentytwelve_body_class' );
 /**
  * Adjusts content_width value for full-width and single image attachment
  * templates, and when there are no active widgets in the sidebar.
+ * 全幅とシングルアタッチメントテンプレートの時とサイドバーにアクティブな
+ * ウィジェットがないときにコンテンツ幅の値を調整する。
  *
  * @since Twenty Twelve 1.0
  */
@@ -520,7 +525,10 @@ add_action( 'template_redirect', 'twentytwelve_content_width' );
 
 /**
  * Add postMessage support for site title and description for the Theme Customizer.
- *
+ * テーマカスタマイザー用にサイトタイトルとディスクリプションで postMessage サポートを追加する。
+ * TODO: postMessageとはなんぞや？
+ * FYI: https://codex.wordpress.org/Theme_Customization_API
+ * 
  * @since Twenty Twelve 1.0
  *
  * @param WP_Customize_Manager $wp_customize Theme Customizer object.
@@ -534,6 +542,7 @@ add_action( 'customize_register', 'twentytwelve_customize_register' );
 
 /**
  * Binds JS handlers to make Theme Customizer preview reload changes asynchronously.
+ * テーマカスタマイザーで変更を非同期にプレビューさせるために JS ハンドラーをバインドする。
  *
  * @since Twenty Twelve 1.0
  */
